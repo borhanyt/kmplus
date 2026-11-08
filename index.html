@@ -225,6 +225,9 @@
       .photo-card__rank { background: rgb(0 0 0 / 0.75) !important; color: #c8de84 !important; }
       .x-fab b { color: #000 !important; }
       .chip--solid { background: #c8de84 !important; color: #000 !important; }
+      .x-pcats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+      .x-pcat { min-height: var(--tap); padding: 0 16px; border-radius: var(--r-pill); border: 1px solid #c8de84; background: transparent; color: #c8de84; font: var(--type-label); font-family: var(--sans); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+      .x-pcat[aria-pressed="true"] { background: #c8de84; color: #000; }
     </style>
   </head>
   <body>
@@ -452,6 +455,77 @@
           </div>
         </section>
 
+        <section class="section" id="pads" data-nav="موس‌پدها">
+          <div class="head">
+            <p class="head__eyebrow">موس‌پدها</p>
+            <h2>موس‌پد برای گیم، اداره و کیوت.</h2>
+            <div class="x-pcats" role="group" aria-label="دسته‌بندی موس‌پد">
+              <button class="x-pcat" type="button" data-pc="all" aria-pressed="true">همه</button>
+              <button class="x-pcat" type="button" data-pc="gaming" aria-pressed="false">🎮 موس‌پد برای گیم</button>
+              <button class="x-pcat" type="button" data-pc="office" aria-pressed="false">💼 موس‌پد برای اداره</button>
+              <button class="x-pcat" type="button" data-pc="cute" aria-pressed="false">🎀 موس‌پد کیوت</button>
+            </div>
+          </div>
+          <div class="photo-cards">
+            <article class="photo-card" id="p-p003" data-pcat="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم</p>
+                <div class="photo-card__photos"><img src="pad_p003.jpg" alt="موس‌پد ردراگون P003 Suzaku" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>موس‌پد ردراگون P003 Suzaku</h3><p class="photo-card__price">۱٬۳۹۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">۸۰×۳۰ سانتی‌متر · ضخامت ۳ میلی‌متر</p>
+                <ul class="x-feats"><li class="pill">جا برای کیبورد و موس</li><li class="pill">لبه‌ی دوخته</li><li class="pill">زیره‌ی ضدلغزش</li></ul>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="p-p003">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="p-bp50l" data-pcat="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم</p>
+                <div class="photo-card__photos"><img src="pad_bp50l.jpg" alt="موس‌پد بلادی BP-50L" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>موس‌پد بلادی BP-50L</h3><p class="photo-card__price">۱٬۰۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">۷۵×۳۰ سانتی‌متر · ضخامت ۳ میلی‌متر</p>
+                <ul class="x-feats"><li class="pill">سطح پارچه‌ای نرم</li><li class="pill">لبه‌ی دوخته</li><li class="pill">قابل شست‌وشو</li></ul>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="p-bp50l">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="p-grey" data-pcat="office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری</p>
+                <div class="photo-card__photos"><img src="pad_grey.jpg" alt="دسک‌مت لاجیتک Studio طوسی" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>دسک‌مت لاجیتک Studio طوسی</h3><p class="photo-card__price">۶٬۸۷۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">۷۰×۳۰ سانتی‌متر · ضخامت ۲ میلی‌متر</p>
+                <ul class="x-feats"><li class="pill">ضد ریختن مایعات</li><li class="pill">ظاهر ساده و شیک</li><li class="pill">زیره‌ی ضدلغزش</li></ul>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="p-grey">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="p-lilac" data-pcat="cute">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎀 کیوت</p>
+                <div class="photo-card__photos"><img src="pad_lilac.jpg" alt="دسک‌مت لاجیتک Studio یاسی" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>دسک‌مت لاجیتک Studio یاسی</h3><p class="photo-card__price">۶٬۸۷۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">۷۰×۳۰ سانتی‌متر · رنگ پاستلی</p>
+                <ul class="x-feats"><li class="pill">رنگ یاسی ملایم</li><li class="pill">ضد ریختن مایعات</li><li class="pill">لبه‌ی ضدنخ‌کش</li></ul>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="p-lilac">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section class="section" id="cart" data-nav="سبد خرید">
           <div class="head">
             <p class="head__eyebrow">سبد خرید</p>
@@ -544,6 +618,10 @@
         "kb-k530": { name: "کیبورد ردراگون K530 Pro", price: 6700000 },
         "m-a60": { name: "موس بلادی A60", price: 2680000 },
         "m-a90": { name: "موس بلادی A90", price: 2850000 },
+        "p-p003": { name: "موس‌پد ردراگون P003", price: 1390000 },
+        "p-bp50l": { name: "موس‌پد بلادی BP-50L", price: 1050000 },
+        "p-grey": { name: "دسک‌مت لاجیتک طوسی", price: 6870000 },
+        "p-lilac": { name: "دسک‌مت لاجیتک یاسی", price: 6870000 },
       };
       const PROFILE_NAMES = { linear: "لینیر", tactile: "تکتایل", clicky: "کلیکی", quiet: "بی‌صدا", poppy: "پاپی" };
       const CATS = {
@@ -811,6 +889,17 @@
         })
       );
       renderCart();
+
+      // ---------- Mouse pad filter ----------
+      (function () {
+        const pbtns = document.querySelectorAll(".x-pcat");
+        const pcards = document.querySelectorAll("#pads .photo-card");
+        pbtns.forEach((b) => b.addEventListener("click", () => {
+          const c = b.dataset.pc;
+          pcards.forEach((card) => { card.hidden = !(c === "all" || card.dataset.pcat === c); });
+          pbtns.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        }));
+      })();
 
       // ---------- Category filter ----------
       const kbSection = document.getElementById("keyboards");
