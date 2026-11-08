@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KM PLUS — فروشگاه کیبورد و موس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Vazirmatn:wght@400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <link rel="stylesheet" href="hark-cards.css" />
+    <style>
+      :root { --sans: "Vazirmatn", Tahoma, sans-serif; }
+      body { font-family: var(--sans); }
+
+      /* Big capsule buttons, matching the photo card's capsule */
+      .x-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; padding-top: 6px; }
+      .x-cta, .x-ghost {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        min-height: 48px; padding: 0 18px; border-radius: var(--r-pill);
+        font: var(--type-body-strong); font-family: var(--sans); cursor: pointer; text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 100ms ease-out, box-shadow var(--dur-quick) ease;
+      }
+      .x-cta { background: var(--fill-primary); color: var(--text-primary-on); border: 0; }
+      .x-ghost { background: var(--fill-primary-on); color: var(--text-primary); border: 1px solid var(--stroke-primary); }
+      .x-cta:hover { box-shadow: inset 0 0 0 100px var(--hover-wash-primary-on); }
+      .x-ghost:hover { box-shadow: inset 0 0 0 100px var(--hover-wash); }
+      .x-cta:active, .x-ghost:active { transform: scale(0.97); }
+      .x-cta:disabled { background: var(--fill-tertiary); color: var(--text-secondary); cursor: not-allowed; transform: none; box-shadow: none; }
+      .x-wide { width: 100%; }
+      .x-feats { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+      .photo-card { transition: box-shadow var(--dur-quick) ease; }
+      .photo-card.x-picked { box-shadow: 0 0 0 2px var(--fill-primary); }
+
+      /* Sound lab */
+      .x-lab { display: grid; gap: 20px; padding: clamp(18px, 3vw, 28px); border-radius: var(--r-l); background: var(--fill-tertiary); }
+      .x-toggles { display: flex; flex-wrap: wrap; gap: 8px; }
+      .x-toggle {
+        display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 18px;
+        border-radius: var(--r-pill); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on);
+        color: var(--text-primary); font: var(--type-label); font-family: var(--sans); cursor: pointer;
+      }
+      .x-toggle::before { content: ""; width: 8px; height: 8px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--text-tertiary); }
+      .x-toggle[aria-pressed="true"] { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+      .x-toggle[aria-pressed="true"]::before { background: var(--fill-system-green); box-shadow: none; }
+      .x-board {
+        direction: ltr; display: grid; gap: 6px; padding: 12px; border-radius: var(--r-m);
+        background: var(--fill-primary-on); border: 1px solid var(--stroke-primary);
+        user-select: none; -webkit-user-select: none; touch-action: manipulation;
+      }
+      .x-row { display: flex; gap: 6px; }
+      .x-row:nth-child(2) { padding-left: 3%; }
+      .x-row:nth-child(3) { padding-left: 6%; }
+      .x-key {
+        flex: 1 1 0; min-width: 0; height: 52px; border-radius: 10px;
+        border: 1px solid var(--stroke-primary); background: var(--fill-tertiary); color: var(--text-primary);
+        font: var(--type-body); font-family: var(--sans); cursor: pointer;
+        box-shadow: 0 4px 0 var(--stroke-primary);
+        transition: transform 60ms ease-out, box-shadow 60ms ease-out;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .x-key--wide { flex-grow: 1.8; font: var(--type-tag); font-family: var(--sans); }
+      .x-key--space { flex-grow: 6; }
+      .x-key.is-down { transform: translateY(4px); box-shadow: 0 0 0 var(--stroke-primary); background: var(--fill-primary); color: var(--text-primary-on); }
+      .x-labfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+      .x-vol { display: flex; align-items: center; gap: 12px; font: var(--type-label); color: var(--text-secondary); min-height: var(--tap); }
+      .x-vol input { width: 160px; accent-color: var(--fill-primary); }
+      .x-hint { font: var(--type-small); color: var(--text-secondary); }
+      @media (max-width: 599px) {
+        .x-board { padding: 8px; gap: 5px; }
+        .x-row { gap: 4px; }
+        .x-key { height: 50px; font-size: var(--size-small); border-radius: 8px; }
+        .x-labfoot .x-cta { width: 100%; }
+        .x-vol { width: 100%; } .x-vol input { flex: 1; width: auto; }
+      }
+
+      /* Cart */
+      .x-fab {
+        position: fixed; z-index: 30; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); left: 16px;
+        display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 20px;
+        border-radius: var(--r-pill); background: var(--fill-primary); color: var(--text-primary-on);
+        font: var(--type-body-strong); font-family: var(--sans); text-decoration: none; box-shadow: var(--hark-shadow);
+      }
+      .x-fab b { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 6px; border-radius: var(--r-pill); background: var(--fill-system-green); color: #fff; font-weight: var(--weight-bold); }
+      .x-fab.x-bump { animation: x-bump 360ms var(--ease-out); }
+      @keyframes x-bump { 40% { transform: scale(1.12); } }
+      @media (prefers-reduced-motion: reduce) { .x-fab.x-bump { animation: none; } }
+      .x-cart { list-style: none; margin: 0; padding: 0; max-width: 720px; }
+      .x-cart li { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 14px 0; border-bottom: 1px solid var(--stroke-secondary); }
+      .x-cart__name { flex: 1 1 180px; font: var(--type-body); }
+      .x-cart__name small { display: block; color: var(--text-secondary); font-size: var(--size-meta); margin-top: 2px; }
+      .x-qty { display: inline-flex; align-items: center; border: 1px solid var(--stroke-primary); border-radius: var(--r-pill); }
+      .x-qty button, .x-remove { min-width: var(--tap); min-height: var(--tap); border: 0; background: none; color: var(--text-primary); font: var(--type-heading); font-family: var(--sans); cursor: pointer; border-radius: var(--r-pill); }
+      .x-qty output { min-width: 28px; text-align: center; font: var(--type-body-strong); }
+      .x-remove { font: var(--type-tag); font-family: var(--sans); color: var(--text-secondary); padding: 0 10px; }
+      .x-line { min-width: 120px; text-align: left; font-weight: var(--weight-bold); white-space: nowrap; }
+      .x-empty { padding: 18px 0; color: var(--text-secondary); }
+
+      /* Order form */
+      .x-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 820px; }
+      .x-form[hidden] { display: none; }
+      .x-field { display: grid; gap: 6px; align-content: start; }
+      .x-field--full { grid-column: 1 / -1; }
+      .x-field label, .x-field legend { font: var(--type-label); }
+      .x-field input, .x-field select, .x-field textarea {
+        width: 100%; min-height: 48px; padding: 10px 14px; border-radius: var(--r-s);
+        border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); color: var(--text-primary);
+        font: var(--type-body); font-family: var(--sans); font-size: 16px;
+      }
+      .x-field textarea { min-height: 96px; resize: vertical; }
+      .x-field input[dir="ltr"] { text-align: right; }
+      .x-field [aria-invalid="true"] { border-color: var(--fill-system-red); }
+      .x-err { font: var(--type-caption); color: var(--fill-system-red); min-height: 0; }
+      .x-err:empty { display: none; }
+      fieldset.x-field { border: 0; padding: 0; margin: 0; }
+      .x-radios { display: flex; flex-wrap: wrap; gap: 8px; }
+      .x-radios label { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px; border-radius: var(--r-s); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); font: var(--type-body); cursor: pointer; }
+      .x-radios label:has(input:checked) { border-color: var(--fill-primary); box-shadow: inset 0 0 0 1px var(--fill-primary); }
+      .x-radios input { accent-color: var(--fill-primary); width: 18px; height: 18px; }
+      .x-submit { grid-column: 1 / -1; display: grid; gap: 8px; justify-items: start; }
+      .x-confirm { display: grid; gap: 18px; max-width: 820px; padding: clamp(18px, 3vw, 28px); border-radius: var(--r-l); background: var(--fill-tertiary); }
+      .x-confirm[hidden] { display: none; }
+      .x-confirm h3 { font: var(--type-title); }
+      .x-code { direction: ltr; unicode-bidi: isolate; font-weight: var(--weight-bold); }
+      .x-confirm .breakdown { max-width: none; }
+      .x-confirm .links .x-cta, .x-confirm .links .x-ghost { flex: 1 1 200px; }
+      @media (max-width: 599px) { .x-form { grid-template-columns: minmax(0, 1fr); } .x-submit .x-cta { width: 100%; } }
+
+      /* Category sidebar: fixed on the physical left on wide screens, a sticky chip bar on narrow ones */
+      .x-side {
+        z-index: 25; display: grid; gap: 10px; padding: 18px; border-radius: var(--r-l);
+        background: var(--mat-regular); -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur);
+        border: 1px solid var(--stroke-secondary); box-shadow: var(--hark-shadow);
+      }
+      .x-side__title { font: var(--type-label); color: var(--text-secondary); margin: 0 0 2px; }
+      .x-side__list { display: grid; gap: 8px; }
+      .x-cat {
+        display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 0 16px;
+        border-radius: var(--r-m); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on);
+        color: var(--text-primary); font: var(--type-body-strong); font-family: var(--sans); text-align: right; cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 100ms ease-out, box-shadow var(--dur-quick) ease;
+      }
+      .x-cat__emoji { font-size: 22px; line-height: 1; }
+      .x-cat:hover { box-shadow: inset 0 0 0 100px var(--hover-wash); }
+      .x-cat:active { transform: scale(0.97); }
+      .x-cat[aria-pressed="true"] { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+      .x-cat[aria-pressed="true"]:hover { box-shadow: inset 0 0 0 100px var(--hover-wash-primary-on); }
+      .x-cat--all { min-height: var(--tap); justify-content: center; font: var(--type-label); font-family: var(--sans); border-radius: var(--r-pill); }
+      @media (min-width: 1100px) {
+        body { padding-left: 260px; }
+        .x-side { position: fixed; left: 16px; top: 96px; width: 228px; max-height: calc(100vh - 190px); overflow-y: auto; }
+      }
+      @media (max-width: 1099px) {
+        .x-side {
+          position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px);
+          display: block; padding: 6px; border-radius: var(--r-pill);
+        }
+        .x-side__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        .x-side__list { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+        .x-side__list::-webkit-scrollbar { display: none; }
+        .x-cat { width: auto; flex: 0 0 auto; min-height: var(--tap); padding: 0 14px; gap: 6px; border-radius: var(--r-pill); font: var(--type-label); font-family: var(--sans); white-space: nowrap; scroll-snap-align: start; }
+        .x-cat__emoji { font-size: 17px; }
+        .x-cat--all { order: -1; }
+        #keyboards, #keyboards .photo-card { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 136px); }
+      }
+      .photo-card[hidden] { display: none; }
+      .x-share { grid-column: 1 / -1; justify-self: center; font-family: var(--sans); cursor: pointer; }
+      .photo-card.x-flash { animation: x-flash 1.8s var(--ease-out); }
+      @keyframes x-flash { 0%, 60% { box-shadow: 0 0 0 3px var(--fill-system-green); } 100% { box-shadow: 0 0 0 0 transparent; } }
+      @media (prefers-reduced-motion: reduce) { .photo-card.x-flash { animation: none; box-shadow: 0 0 0 3px var(--fill-system-green); } }
+      .x-toast {
+        position: fixed; z-index: 40; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 84px);
+        transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+        padding: 12px 20px; border-radius: var(--r-pill); background: var(--fill-primary); color: var(--text-primary-on);
+        font: var(--type-label); font-family: var(--sans); box-shadow: var(--hark-shadow);
+        transition: opacity var(--dur-quick) ease, transform var(--dur-quick) var(--ease-out);
+      }
+      .x-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+      .foot { padding-bottom: 72px; }
+      .x-brand { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+      .hero .x-brand-sub { font: var(--type-label); margin-top: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="page" id="top">
+      <header class="nav glass" data-auto></header>
+      <aside class="x-side" aria-labelledby="sideTitle">
+        <p class="x-side__title" id="sideTitle">کیبورد برای چه کاری؟</p>
+        <div class="x-side__list" role="group" aria-labelledby="sideTitle">
+          <button class="x-cat" type="button" data-cat="gaming" aria-pressed="false"><span class="x-cat__emoji" aria-hidden="true">🎮</span> کیبورد برای گیم</button>
+          <button class="x-cat" type="button" data-cat="typing" aria-pressed="false"><span class="x-cat__emoji" aria-hidden="true">⌨️</span> کیبورد برای تایپ</button>
+          <button class="x-cat" type="button" data-cat="office" aria-pressed="false"><span class="x-cat__emoji" aria-hidden="true">💼</span> کیبورد برای کارهای اداری</button>
+          <button class="x-cat" type="button" data-cat="cute" aria-pressed="false"><span class="x-cat__emoji" aria-hidden="true">🎀</span> کیبورد کیوت</button>
+          <button class="x-cat x-cat--all" type="button" data-cat="all" aria-pressed="true">همه</button>
+        </div>
+      </aside>
+      <main class="main">
+        <section class="hero">
+          <img class="hero__img" src="hero.jpg" alt="کیبورد و موس روی میز تیره" />
+          <div class="hero__copy">
+            <p class="hero__eyebrow">فروشگاه کیبورد و موس</p>
+            <h1><span class="x-brand" dir="ltr">KM PLUS</span></h1>
+            <p class="x-brand-sub">کیبورد و موس پلاس</p>
+            <p class="hero__sub">قبل از خرید، صدای کیبوردت رو بشنو.</p>
+            <p class="hero__meta">ارسال به سراسر ایران · ضمانت ۱۸ ماهه · پرداخت در محل در تهران</p>
+          </div>
+          <aside class="callout" aria-label="شروع">
+            <p class="callout__head"><span class="hark-mark" data-size="16"></span> آزمایشگاه صدا</p>
+            <p class="callout__lead"><strong>اول گوش بده، بعد بخر.</strong> صدای سوئیچ لینیر، تکتایل، کلیکی، بی‌صدا و پاپی رو همین‌جا امتحان کن.</p>
+            <a class="x-cta" href="#keyboards">صدای کیبوردها رو بشنو</a>
+          </aside>
+        </section>
+
+        <section class="section" id="keyboards" data-nav="کیبوردها">
+          <div class="head">
+            <p class="head__eyebrow">کیبوردها</p>
+            <h2>پنج کیبورد، پنج صدای متفاوت.</h2>
+            <p class="head__sub" id="filterNote" aria-live="polite">نمایش همه‌ی کیبوردها</p>
+          </div>
+          <div class="photo-cards">
+            <article class="photo-card" id="kb-gaming" data-profile="tactile" data-cats="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · تکتایل</p>
+                <div class="photo-card__photos"><img src="kb_black.jpg" alt="کیبورد گیمینگ مشکی ۶۵٪ با نور RGB" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ مشکی ۶۵٪</h3><p class="photo-card__price">۳٬۲۰۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ تکتایل (Tactile) · چیدمان ۶۵٪</p>
+                <p class="photo-card__note">صدای ملایم و پرحس.</p>
+                <ul class="x-feats"><li class="pill">نورپردازی RGB</li><li class="pill">هات‌سواپ</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-listen="tactile">🔊 بشنو</button>
+                  <button class="x-cta" type="button" data-add="kb-gaming">افزودن به سبد</button>
+                  <button class="btn x-share" type="button" data-share="kb-gaming">🔗 کپی لینک</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="kb-cream" data-profile="linear" data-cats="typing gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">⌨️ تایپ · 🎮 گیم · لینیر</p>
+                <div class="photo-card__photos"><img src="kb_cream.jpg" alt="کیبورد کرم ۷۵٪" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد کرم ۷۵٪</h3><p class="photo-card__price">۴٬۸۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ لینیر روان (Linear) · چیدمان ۷۵٪</p>
+                <p class="photo-card__note">صدای «تاک» عمیق و نرم.</p>
+                <ul class="x-feats"><li class="pill">کیس آلومینیومی</li><li class="pill">کی‌کپ PBT</li><li class="pill">بی‌سیم/باسیم</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-listen="linear">🔊 بشنو</button>
+                  <button class="x-cta" type="button" data-add="kb-cream">افزودن به سبد</button>
+                  <button class="btn x-share" type="button" data-share="kb-cream">🔗 کپی لینک</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="kb-retro" data-profile="clicky" data-cats="typing">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">⌨️ تایپ · کلیکی</p>
+                <div class="photo-card__photos"><img src="kb_retro.jpg" alt="کیبورد رترو فول‌سایز" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد رترو فول‌سایز</h3><p class="photo-card__price">۲٬۶۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ کلیکی آبی (Clicky) · فول‌سایز</p>
+                <p class="photo-card__note">صدای «تیک» تیز و بلند.</p>
+                <ul class="x-feats"><li class="pill">طرح کلاسیک</li><li class="pill">کابل فنری</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-listen="clicky">🔊 بشنو</button>
+                  <button class="x-cta" type="button" data-add="kb-retro">افزودن به سبد</button>
+                  <button class="btn x-share" type="button" data-share="kb-retro">🔗 کپی لینک</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="kb-office" data-profile="quiet" data-cats="office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="kb_office.jpg" alt="کیبورد اداری اسلیم نقره‌ای" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد اداری اسلیم</h3><p class="photo-card__price">۱٬۸۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">کلیدهای کم‌ارتفاع قیچی‌ای (Scissor) · فول‌سایز</p>
+                <p class="photo-card__note">تقریباً بی‌صدا؛ مناسب محیط کار.</p>
+                <ul class="x-feats"><li class="pill">بی‌صدا</li><li class="pill">کیپد عددی</li><li class="pill">بی‌سیم · ۳ دستگاه</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-listen="quiet">🔊 بشنو</button>
+                  <button class="x-cta" type="button" data-add="kb-office">افزودن به سبد</button>
+                  <button class="btn x-share" type="button" data-share="kb-office">🔗 کپی لینک</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="kb-cute" data-profile="poppy" data-cats="cute">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎀 کیوت · پاپی</p>
+                <div class="photo-card__photos"><img src="kb_cute.jpg" alt="کیبورد کیوت صورتی ۶۰٪ با کی‌کپ خرگوشی" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد کیوت صورتی</h3><p class="photo-card__price">۲٬۹۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ لینیر نرم · چیدمان ۶۰٪</p>
+                <p class="photo-card__note">صدای «پاپ» حبابی و شیرین.</p>
+                <ul class="x-feats"><li class="pill">کی‌کپ گرد صورتی و یاسی</li><li class="pill">کی‌کپ خرگوشی</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-listen="poppy">🔊 بشنو</button>
+                  <button class="x-cta" type="button" data-add="kb-cute">افزودن به سبد</button>
+                  <button class="btn x-share" type="button" data-share="kb-cute">🔗 کپی لینک</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="lab" data-nav="آزمایشگاه صدا">
+          <div class="head">
+            <p class="head__eyebrow">آزمایشگاه صدا</p>
+            <h2>یه سوئیچ انتخاب کن و تایپ کن.</h2>
+          </div>
+          <div class="x-lab">
+            <div class="x-toggles" role="group" aria-label="نوع سوئیچ">
+              <button class="x-toggle" type="button" data-profile="linear" aria-pressed="true">لینیر</button>
+              <button class="x-toggle" type="button" data-profile="tactile" aria-pressed="false">تکتایل</button>
+              <button class="x-toggle" type="button" data-profile="clicky" aria-pressed="false">کلیکی</button>
+              <button class="x-toggle" type="button" data-profile="quiet" aria-pressed="false">بی‌صدا (اداری)</button>
+              <button class="x-toggle" type="button" data-profile="poppy" aria-pressed="false">کیوت (پاپی)</button>
+            </div>
+            <div class="x-board" id="board" aria-label="کیبورد آزمایشی"></div>
+            <p class="x-hint">روی کلیدها بزن، یا با کیبورد خودت تایپ کن. فاصله و اینتر صدای بم‌تری دارن.</p>
+            <div class="x-labfoot">
+              <button class="x-cta" type="button" id="demo">▶ پخش نمونه تایپ</button>
+              <label class="x-vol">صدا <input type="range" id="vol" min="0" max="100" value="70" aria-label="بلندی صدا" /> <span id="volOut">۷۰٪</span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="mice" data-nav="موس‌ها">
+          <div class="head">
+            <p class="head__eyebrow">موس‌ها</p>
+            <h2>سبک برای بازی، راحت برای کار.</h2>
+          </div>
+          <div class="photo-cards">
+            <article class="photo-card" id="m-black">
+              <div class="photo-card__stage">
+                <div class="photo-card__photos"><img src="mouse_black.jpg" alt="موس گیمینگ بی‌سیم مشکی" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>موس گیمینگ بی‌سیم مشکی</h3><p class="photo-card__price">۱٬۹۵۰٬۰۰۰ تومان</p></div>
+                <ul class="x-feats"><li class="pill">وزن ۵۸ گرم</li><li class="pill">سنسور ۲۶٬۰۰۰ DPI</li><li class="pill">باتری ۷۰ ساعت</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-mouse>🔊 صدای کلیک</button>
+                  <button class="x-cta" type="button" data-add="m-black">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="m-white">
+              <div class="photo-card__stage">
+                <div class="photo-card__photos"><img src="mouse_white.jpg" alt="موس ارگونومیک سفید" /></div>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>موس ارگونومیک سفید</h3><p class="photo-card__price">۱٬۴۵۰٬۰۰۰ تومان</p></div>
+                <ul class="x-feats"><li class="pill">وزن ۷۲ گرم</li><li class="pill">سنسور ۱۶٬۰۰۰ DPI</li><li class="pill">بی‌سیم و بلوتوث</li></ul>
+                <div class="x-actions">
+                  <button class="x-ghost" type="button" data-mouse>🔊 صدای کلیک</button>
+                  <button class="x-cta" type="button" data-add="m-white">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="cart" data-nav="سبد خرید">
+          <div class="head">
+            <p class="head__eyebrow">سبد خرید</p>
+            <h2>سفارشت رو مرور کن.</h2>
+          </div>
+          <ul class="x-cart" id="cartList"></ul>
+          <div class="breakdown">
+            <dl>
+              <div class="row"><dt>جمع کالاها</dt><dd id="subtotal">۰ تومان</dd></div>
+              <div class="row"><dt>هزینه ارسال <small>رایگان برای خرید بالای ۵٬۰۰۰٬۰۰۰ تومان</small></dt><dd id="shipping">۹۵٬۰۰۰ تومان</dd></div>
+              <div class="row row--total"><dt>مبلغ نهایی</dt><dd id="total">۰ تومان</dd></div>
+            </dl>
+            <p class="fineprint" id="freeHint"></p>
+          </div>
+        </section>
+
+        <section class="section" id="order" data-nav="ثبت سفارش">
+          <div class="head">
+            <p class="head__eyebrow">ثبت سفارش</p>
+            <h2>آدرس رو بنویس، ما می‌فرستیم.</h2>
+          </div>
+          <form class="x-form" id="orderForm" novalidate>
+            <div class="x-field"><label for="f-name">نام و نام خانوادگی</label><input id="f-name" name="name" autocomplete="name" required /><p class="x-err" id="e-name"></p></div>
+            <div class="x-field"><label for="f-mobile">شماره موبایل</label><input id="f-mobile" name="mobile" inputmode="numeric" autocomplete="tel" dir="ltr" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required /><p class="x-err" id="e-mobile"></p></div>
+            <div class="x-field"><label for="f-province">استان</label><select id="f-province" name="province" required><option value="">انتخاب کنید</option></select><p class="x-err" id="e-province"></p></div>
+            <div class="x-field"><label for="f-city">شهر</label><input id="f-city" name="city" autocomplete="address-level2" required /><p class="x-err" id="e-city"></p></div>
+            <div class="x-field x-field--full"><label for="f-address">آدرس کامل</label><textarea id="f-address" name="address" autocomplete="street-address" required></textarea><p class="x-err" id="e-address"></p></div>
+            <div class="x-field"><label for="f-postal">کد پستی (۱۰ رقم)</label><input id="f-postal" name="postal" inputmode="numeric" autocomplete="postal-code" dir="ltr" required /><p class="x-err" id="e-postal"></p></div>
+            <fieldset class="x-field">
+              <legend>روش پرداخت</legend>
+              <div class="x-radios">
+                <label><input type="radio" name="pay" value="پرداخت در محل" checked /> پرداخت در محل</label>
+                <label><input type="radio" name="pay" value="کارت‌به‌کارت" /> کارت‌به‌کارت</label>
+              </div>
+              <p class="x-err" id="e-pay"></p>
+            </fieldset>
+            <div class="x-field x-field--full"><label for="f-notes">توضیحات</label><textarea id="f-notes" name="notes" placeholder="اختیاری"></textarea></div>
+            <div class="x-submit">
+              <button class="x-cta" type="submit" id="submitBtn">ثبت سفارش</button>
+              <p class="x-err" id="e-cart"></p>
+            </div>
+          </form>
+          <div class="x-confirm" id="confirm" hidden tabindex="-1">
+            <p><span class="chip chip--solid">سفارش ثبت شد</span></p>
+            <h3>کد سفارش: <span class="x-code" id="orderCode"></span></h3>
+            <p>برای نهایی شدن، سفارش رو در تلگرام یا واتساپ برامون بفرست.</p>
+            <div class="breakdown"><dl id="summary"></dl></div>
+            <div class="links">
+              <a class="x-cta" id="tgBtn" href="#" target="_blank" rel="noopener">ارسال سفارش در تلگرام</a>
+              <a class="x-ghost" id="waBtn" href="#" target="_blank" rel="noopener">ارسال در واتساپ</a>
+            </div>
+            <p class="fineprint">متن سفارش هنگام باز شدن تلگرام کپی می‌شه؛ کافیه در گفتگو بچسبونی.</p>
+          </div>
+        </section>
+
+        <section class="section" id="faq" data-nav="سوالات">
+          <div class="head"><h2>سوالات متداول</h2></div>
+          <div class="cards">
+            <div><h3>فرق لینیر و تکتایل و کلیکی چیه؟</h3><p>لینیر روان و بی‌صداتره، تکتایل یه برآمدگی حس‌شدنی داره، کلیکی صدای تیک واضح می‌ده. کلید قیچی‌ای اداری تقریباً بی‌صداست و سوئیچ کیوت صدای «پاپ» حبابی داره.</p></div>
+            <div><h3>زمان ارسال؟</h3><p>تهران ۱ تا ۲ روز کاری، شهرستان ۳ تا ۵ روز.</p></div>
+            <div><h3>ضمانت؟</h3><p>۱۸ ماه ضمانت تعویض.</p></div>
+          </div>
+        </section>
+      </main>
+      <footer class="foot">
+        <p>© ۱۴۰۵ <span class="x-brand" dir="ltr">KM PLUS</span> — همه حقوق محفوظ است. صداها شبیه‌سازی‌شده‌ی دیجیتال هر نوع سوئیچه.</p>
+        <nav aria-label="بازگشت به بخش‌ها" data-auto></nav>
+        <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"><span class="hark-mark"></span><span>built by hark</span></a>
+      </footer>
+    </div>
+    <a class="x-fab" href="#cart" id="fab" aria-label="سبد خرید">🛒 سبد خرید <b id="fabCount">۰</b></a>
+    <div class="x-toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="hark.js"></script>
+    <script src="hark-cards.js"></script>
+    <script>
+      // Contact settings: change these to your own.
+      const TELEGRAM_ID = "kmplus_shop";
+      const WHATSAPP_NUMBER = "989000000000";
+
+      const SHIPPING = 95000;
+      const FREE_OVER = 5000000;
+      const PRODUCTS = {
+        "kb-gaming": { name: "کیبورد گیمینگ مشکی ۶۵٪", price: 3200000 },
+        "kb-cream": { name: "کیبورد کرم ۷۵٪", price: 4850000 },
+        "kb-retro": { name: "کیبورد رترو فول‌سایز", price: 2650000 },
+        "kb-office": { name: "کیبورد اداری اسلیم", price: 1850000 },
+        "kb-cute": { name: "کیبورد کیوت صورتی", price: 2950000 },
+        "m-black": { name: "موس گیمینگ بی‌سیم مشکی", price: 1950000 },
+        "m-white": { name: "موس ارگونومیک سفید", price: 1450000 },
+      };
+      const PROFILE_NAMES = { linear: "لینیر", tactile: "تکتایل", clicky: "کلیکی", quiet: "بی‌صدا", poppy: "پاپی" };
+      const CATS = {
+        gaming: { name: "کیبورد برای گیم", profile: "tactile" },
+        typing: { name: "کیبورد برای تایپ", profile: "clicky" },
+        office: { name: "کیبورد برای کارهای اداری", profile: "quiet" },
+        cute: { name: "کیبورد کیوت", profile: "poppy" },
+      };
+
+      // ---------- Persian digits ----------
+      const FA = "۰۱۲۳۴۵۶۷۸۹";
+      function toFa(n) {
+        const s = typeof n === "number" ? Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "٬") : String(n);
+        return s.replace(/\d/g, (d) => FA[d]);
+      }
+      function toman(n) { return toFa(n) + " تومان"; }
+      function toEn(s) {
+        return String(s)
+          .replace(/[۰-۹]/g, (d) => d.charCodeAt(0) - 1776)
+          .replace(/[٠-٩]/g, (d) => d.charCodeAt(0) - 1632);
+      }
+
+      // ---------- Audio ----------
+      let ctx = null, master = null, noiseBuf = null, volume = 0.7;
+      function audio() {
+        if (!ctx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          ctx = new AC();
+          const comp = ctx.createDynamicsCompressor();
+          comp.threshold.value = -10; comp.ratio.value = 4;
+          master = ctx.createGain();
+          master.gain.value = volume;
+          master.connect(comp).connect(ctx.destination);
+          noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+          const d = noiseBuf.getChannelData(0);
+          for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+        }
+        if (ctx.state === "suspended") ctx.resume();
+        return ctx;
+      }
+      const rnd = (a, b) => a + Math.random() * (b - a);
+      function env(g, t, peak, dur) {
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(Math.max(peak, 0.0002), t + 0.0015);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      }
+      function noise(t, dur, type, freq, q, gain) {
+        const s = ctx.createBufferSource();
+        s.buffer = noiseBuf;
+        const f = ctx.createBiquadFilter();
+        f.type = type; f.frequency.value = freq; f.Q.value = q;
+        const g = ctx.createGain();
+        env(g, t, gain, dur);
+        s.connect(f).connect(g).connect(master);
+        s.start(t, Math.random() * 0.8);
+        s.stop(t + dur + 0.03);
+      }
+      function tone(t, freq, dur, gain, type) {
+        const o = ctx.createOscillator();
+        o.type = type || "sine";
+        o.frequency.setValueAtTime(freq, t);
+        o.frequency.exponentialRampToValueAtTime(freq * 0.6, t + dur);
+        const g = ctx.createGain();
+        env(g, t, gain, dur);
+        o.connect(g).connect(master);
+        o.start(t);
+        o.stop(t + dur + 0.03);
+      }
+      function press(profile, deep) {
+        if (!audio()) return;
+        const t = ctx.currentTime + 0.005;
+        const v = rnd(0.85, 1.15);
+        const dm = deep ? 1.7 : 1;   // longer
+        const pm = deep ? 0.72 : 1;  // lower
+        const p = rnd(0.94, 1.06) * pm;
+        if (profile === "linear") {
+          noise(t, 0.06 * dm, "lowpass", rnd(900, 1400) * p, 0.8, 0.55 * v);
+          tone(t, rnd(120, 180) * p, 0.06 * dm, 0.6 * v, "sine");
+          noise(t + 0.04 * dm, 0.018, "lowpass", rnd(1300, 1700) * p, 0.7, 0.16 * v);
+        } else if (profile === "tactile") {
+          noise(t, 0.007, "bandpass", rnd(2400, 2900), 1.4, 0.2 * v);
+          const b = t + 0.016;
+          noise(b, 0.045 * dm, "bandpass", rnd(1700, 1900) * p, 1.1, 0.6 * v);
+          tone(b, rnd(185, 215) * p, 0.045 * dm, 0.45 * v, "triangle");
+          noise(b + 0.05 * dm, 0.015, "bandpass", 2000 * p, 1, 0.12 * v);
+        } else if (profile === "quiet") {
+          // scissor switch: a short, muffled tap with almost no release
+          noise(t, 0.025 * dm, "lowpass", rnd(620, 780) * p, 0.7, 0.28 * v);
+          tone(t, rnd(230, 270) * p, 0.025 * dm, 0.22 * v, "sine");
+          noise(t + 0.03 * dm, 0.008, "lowpass", 700 * p, 0.7, 0.03 * v);
+        } else if (profile === "poppy") {
+          // creamy/poppy: a higher, bubbly pop
+          tone(t, rnd(300, 340) * p, 0.04 * dm, 0.55 * v, "sine");
+          noise(t, 0.04 * dm, "bandpass", rnd(1500, 1700) * p, 1.3, 0.45 * v);
+          noise(t + 0.045 * dm, 0.012, "bandpass", 1900 * p, 1.2, 0.1 * v);
+        } else {
+          const c = 1.25;
+          noise(t, rnd(0.008, 0.012), "highpass", rnd(3500, 5000), 0.9, 0.85 * v * c);
+          tone(t, rnd(3800, 4600), 0.01, 0.1 * v * c, "square");
+          const b = t + 0.02;
+          noise(b, 0.04 * dm, "bandpass", rnd(2100, 2500) * p, 1, 0.5 * v * c);
+          tone(b, rnd(210, 250) * p, 0.04 * dm, 0.35 * v * c, "triangle");
+          noise(b + 0.06 * dm, rnd(0.008, 0.011), "highpass", rnd(3200, 4400), 0.9, 0.55 * v * c);
+        }
+      }
+      function mouseClick(delay) {
+        if (!audio()) return;
+        const t = ctx.currentTime + 0.005 + (delay || 0);
+        const v = rnd(0.9, 1.1);
+        noise(t, 0.015, "bandpass", rnd(2400, 2600), 2, 0.7 * v);
+        tone(t, rnd(2400, 2600), 0.012, 0.12 * v, "sine");
+        noise(t + 0.07, 0.012, "bandpass", rnd(2700, 2900), 2, 0.35 * v);
+      }
+
+      // ---------- Sound lab ----------
+      let profile = "linear";
+      const ROWS = [
+        [["KeyQ","ض"],["KeyW","ص"],["KeyE","ث"],["KeyR","ق"],["KeyT","ف"],["KeyY","غ"],["KeyU","ع"],["KeyI","ه"],["KeyO","خ"],["KeyP","ح"]],
+        [["KeyA","ش"],["KeyS","س"],["KeyD","ی"],["KeyF","ب"],["KeyG","ل"],["KeyH","ا"],["KeyJ","ت"],["KeyK","ن"],["KeyL","م"],["Semicolon","ک"]],
+        [["KeyZ","ظ"],["KeyX","ط"],["KeyC","ز"],["KeyV","ر"],["KeyB","ذ"],["KeyN","د"],["KeyM","پ"],["Comma","و"],["Backspace","⌫","wide"]],
+        [["Space","فاصله","space"],["Enter","اینتر","wide"]],
+      ];
+      const board = document.getElementById("board");
+      const keyEls = {};
+      ROWS.forEach((row) => {
+        const r = document.createElement("div");
+        r.className = "x-row";
+        row.forEach(([code, label, size]) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "x-key" + (size ? " x-key--wide" : "") + (size === "space" ? " x-key--space" : "");
+          b.textContent = label;
+          b.dataset.code = code;
+          b.tabIndex = -1;
+          keyEls[code] = b;
+          r.appendChild(b);
+        });
+        board.appendChild(r);
+      });
+      const isDeep = (code) => code === "Space" || code === "Enter" || code === "NumpadEnter";
+      function flash(el) {
+        if (!el) return;
+        el.classList.add("is-down");
+        clearTimeout(el._t);
+        el._t = setTimeout(() => el.classList.remove("is-down"), 110);
+      }
+      board.addEventListener("pointerdown", (e) => {
+        const k = e.target.closest(".x-key");
+        if (!k) return;
+        e.preventDefault();
+        press(profile, isDeep(k.dataset.code));
+        flash(k);
+      });
+
+      const cards = document.querySelectorAll(".photo-card[data-profile]");
+      const toggles = document.querySelectorAll(".x-toggle");
+      function setProfile(p) {
+        profile = p;
+        toggles.forEach((t) => t.setAttribute("aria-pressed", String(t.dataset.profile === p)));
+        cards.forEach((c) => c.classList.toggle("x-picked", c.dataset.profile === p));
+      }
+      toggles.forEach((t) => t.addEventListener("click", () => { setProfile(t.dataset.profile); press(t.dataset.profile); }));
+      setProfile("linear");
+
+      document.addEventListener("keydown", (e) => {
+        if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+        const tg = e.target;
+        if (tg.closest && tg.closest("input, textarea, select, [contenteditable], form")) return;
+        if (["Tab", "Shift", "Escape", "CapsLock", "Control", "Alt", "Meta"].includes(e.key)) return;
+        const deep = isDeep(e.code);
+        if (e.code === "Space" && !(tg.closest && tg.closest("button, a"))) e.preventDefault();
+        press(profile, deep);
+        flash(keyEls[e.code === "NumpadEnter" ? "Enter" : e.code]);
+      });
+
+      // Typing bursts
+      let burstId = 0;
+      const allKeys = Object.values(keyEls).filter((k) => !isDeep(k.dataset.code) && k.dataset.code !== "Backspace");
+      function burst(p, ms, animate) {
+        if (!audio()) return;
+        const id = ++burstId;
+        const end = performance.now() + ms;
+        let n = 0, nextSpace = Math.floor(rnd(4, 8));
+        (function step() {
+          if (id !== burstId || performance.now() > end) return;
+          n++;
+          const space = n === nextSpace;
+          if (space) nextSpace = n + Math.floor(rnd(4, 8));
+          press(p, space);
+          if (animate) flash(space ? keyEls.Space : allKeys[Math.floor(Math.random() * allKeys.length)]);
+          setTimeout(step, rnd(60, 180) + (space ? 80 : 0));
+        })();
+      }
+      document.getElementById("demo").addEventListener("click", () => burst(profile, 3000, true));
+      document.querySelectorAll("[data-listen]").forEach((b) =>
+        b.addEventListener("click", () => { setProfile(b.dataset.listen); burst(b.dataset.listen, 1300, false); })
+      );
+      document.querySelectorAll("[data-mouse]").forEach((b) =>
+        b.addEventListener("click", () => { mouseClick(0); mouseClick(0.22); })
+      );
+      const vol = document.getElementById("vol"), volOut = document.getElementById("volOut");
+      vol.addEventListener("input", () => {
+        volume = vol.value / 100;
+        volOut.textContent = toFa(+vol.value) + "٪";
+        if (master) master.gain.setTargetAtTime(volume, ctx.currentTime, 0.02);
+      });
+
+      // ---------- Cart ----------
+      const cart = {}; // id -> qty, in memory only
+      const fab = document.getElementById("fab"), fabCount = document.getElementById("fabCount");
+      function totals() {
+        let sub = 0, count = 0;
+        for (const id in cart) { sub += PRODUCTS[id].price * cart[id]; count += cart[id]; }
+        const ship = count === 0 || sub > FREE_OVER ? 0 : SHIPPING;
+        return { sub, ship, total: sub + ship, count };
+      }
+      function renderCart() {
+        const list = document.getElementById("cartList");
+        const t = totals();
+        list.innerHTML = "";
+        if (!t.count) {
+          list.innerHTML = '<li class="x-empty">سبد خرید خالیه. از کیبوردها و موس‌ها انتخاب کن.</li>';
+        }
+        for (const id in cart) {
+          const p = PRODUCTS[id];
+          const li = document.createElement("li");
+          li.innerHTML =
+            '<span class="x-cart__name">' + p.name + "<small>" + toman(p.price) + " هر عدد</small></span>" +
+            '<span class="x-qty"><button type="button" data-inc="' + id + '" aria-label="یکی بیشتر">+</button><output>' + toFa(cart[id]) +
+            '</output><button type="button" data-dec="' + id + '" aria-label="یکی کمتر">−</button></span>' +
+            '<span class="x-line">' + toman(p.price * cart[id]) + "</span>" +
+            '<button class="x-remove" type="button" data-del="' + id + '">حذف</button>';
+          list.appendChild(li);
+        }
+        document.getElementById("subtotal").textContent = toman(t.sub);
+        document.getElementById("shipping").textContent = t.count && t.ship === 0 ? "رایگان" : toman(t.count ? t.ship : SHIPPING);
+        document.getElementById("total").textContent = toman(t.total);
+        document.getElementById("freeHint").textContent =
+          t.count && t.sub <= FREE_OVER ? toman(FREE_OVER - t.sub + 1) + " دیگه تا ارسال رایگان." : "";
+        fabCount.textContent = toFa(t.count);
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = !t.count;
+        document.getElementById("e-cart").textContent = t.count ? "" : "سبد خرید خالیه";
+      }
+      document.getElementById("cartList").addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        if (b.dataset.inc) cart[b.dataset.inc]++;
+        if (b.dataset.dec) { cart[b.dataset.dec]--; if (cart[b.dataset.dec] < 1) delete cart[b.dataset.dec]; }
+        if (b.dataset.del) delete cart[b.dataset.del];
+        renderCart();
+      });
+      document.querySelectorAll("[data-add]").forEach((b) =>
+        b.addEventListener("click", () => {
+          const id = b.dataset.add;
+          cart[id] = (cart[id] || 0) + 1;
+          renderCart();
+          fab.classList.remove("x-bump"); void fab.offsetWidth; fab.classList.add("x-bump");
+          const label = b.textContent;
+          b.textContent = "✓ اضافه شد";
+          clearTimeout(b._t);
+          b._t = setTimeout(() => (b.textContent = "افزودن به سبد"), 1200);
+          if (label) mouseClick(0);
+        })
+      );
+      renderCart();
+
+      // ---------- Category filter ----------
+      const kbSection = document.getElementById("keyboards");
+      const kbCards = kbSection.querySelectorAll(".photo-card");
+      const catBtns = document.querySelectorAll(".x-cat");
+      const filterNote = document.getElementById("filterNote");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      function applyFilter(cat) {
+        if (!CATS[cat]) cat = "all";
+        let n = 0;
+        kbCards.forEach((c) => {
+          const show = cat === "all" || (c.dataset.cats || "").split(" ").includes(cat);
+          c.hidden = !show;
+          if (show) n++;
+        });
+        catBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === cat)));
+        filterNote.textContent = cat === "all" ? "نمایش همه‌ی کیبوردها" : CATS[cat].name + " · " + toFa(n) + " مدل";
+        if (cat !== "all") setProfile(CATS[cat].profile);
+        return cat;
+      }
+      function setHash(h) {
+        try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
+      }
+      catBtns.forEach((b) =>
+        b.addEventListener("click", () => {
+          const cat = applyFilter(b.dataset.cat);
+          setHash(cat === "all" ? "keyboards" : cat);
+          kbSection.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+          if (cat !== "all") press(CATS[cat].profile);
+        })
+      );
+
+      // ---------- Share links ----------
+      const toast = document.getElementById("toast");
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add("is-on");
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => toast.classList.remove("is-on"), 1800);
+      }
+      function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "0"; ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        let ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+        return ok;
+      }
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text).then(() => true, () => fallbackCopy(text));
+        }
+        return Promise.resolve(fallbackCopy(text));
+      }
+      document.querySelectorAll("[data-share]").forEach((b) =>
+        b.addEventListener("click", () => {
+          const url = location.href.split("#")[0] + "#" + b.dataset.share;
+          copyText(url).then((ok) => showToast(ok ? "لینک کپی شد" : "کپی نشد؛ لینک: " + url));
+        })
+      );
+      function flashCard(card) {
+        if (card.hidden) applyFilter("all");
+        card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+        card.classList.remove("x-flash"); void card.offsetWidth; card.classList.add("x-flash");
+        setTimeout(() => card.classList.remove("x-flash"), 2000);
+      }
+      function fromHash() {
+        const h = decodeURIComponent(location.hash.slice(1));
+        if (!h) return;
+        if (CATS[h]) {
+          applyFilter(h);
+          setTimeout(() => kbSection.scrollIntoView({ block: "start" }), 50);
+          return;
+        }
+        const card = document.getElementById(h);
+        if (card && card.classList.contains("photo-card")) setTimeout(() => flashCard(card), 120);
+      }
+      window.addEventListener("hashchange", fromHash);
+      fromHash();
+
+      // ---------- Order form ----------
+      const PROVINCES = ["آذربایجان شرقی","آذربایجان غربی","اردبیل","اصفهان","البرز","ایلام","بوشهر","تهران","چهارمحال و بختیاری","خراسان جنوبی","خراسان رضوی","خراسان شمالی","خوزستان","زنجان","سمنان","سیستان و بلوچستان","فارس","قزوین","قم","کردستان","کرمان","کرمانشاه","کهگیلویه و بویراحمد","گلستان","گیلان","لرستان","مازندران","مرکزی","هرمزگان","همدان","یزد"];
+      const provSel = document.getElementById("f-province");
+      PROVINCES.forEach((p) => { const o = document.createElement("option"); o.value = o.textContent = p; provSel.appendChild(o); });
+
+      const form = document.getElementById("orderForm");
+      function setErr(field, msg) {
+        document.getElementById("e-" + field).textContent = msg || "";
+        const input = document.getElementById("f-" + field);
+        if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+        return !msg;
+      }
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const t = totals();
+        if (!t.count) { renderCart(); return; }
+        const v = (n) => form.elements[n].value.trim();
+        const mobile = toEn(v("mobile")).replace(/[\s-]/g, "");
+        const postal = toEn(v("postal")).replace(/[\s-]/g, "");
+        const pay = form.elements.pay.value;
+        let ok = true;
+        ok = setErr("name", v("name").length < 3 ? "نام و نام خانوادگی رو کامل بنویس." : "") && ok;
+        ok = setErr("mobile", /^09\d{9}$/.test(mobile) ? "" : "شماره موبایل باید ۱۱ رقم و با ۰۹ شروع بشه.") && ok;
+        ok = setErr("province", v("province") ? "" : "استان رو انتخاب کن.") && ok;
+        ok = setErr("city", v("city") ? "" : "شهر رو بنویس.") && ok;
+        ok = setErr("address", v("address").length < 10 ? "آدرس کامل رو بنویس." : "") && ok;
+        ok = setErr("postal", /^\d{10}$/.test(postal) ? "" : "کد پستی باید ۱۰ رقم باشه.") && ok;
+        ok = setErr("pay", pay === "پرداخت در محل" && v("province") && v("province") !== "تهران" ? "پرداخت در محل فقط در تهران ممکنه؛ کارت‌به‌کارت رو انتخاب کن." : "") && ok;
+        if (!ok) {
+          const bad = form.querySelector('[aria-invalid="true"]');
+          if (bad) bad.focus();
+          return;
+        }
+
+        const code = "KM-" + toFa(Math.floor(1000 + Math.random() * 9000));
+        const items = Object.keys(cart).map((id) => ({ name: PRODUCTS[id].name, qty: cart[id], line: PRODUCTS[id].price * cart[id] }));
+        const lines = [
+          "سفارش جدید از فروشگاه KM PLUS",
+          "کد سفارش: " + code,
+          "",
+          ...items.map((i) => "• " + i.name + " × " + toFa(i.qty) + " — " + toman(i.line)),
+          "",
+          "جمع کالاها: " + toman(t.sub),
+          "ارسال: " + (t.ship ? toman(t.ship) : "رایگان"),
+          "مبلغ نهایی: " + toman(t.total),
+          "",
+          "نام: " + v("name"),
+          "موبایل: " + toFa(mobile),
+          "آدرس: " + v("province") + "، " + v("city") + "، " + v("address"),
+          "کد پستی: " + toFa(postal),
+          "روش پرداخت: " + pay,
+        ];
+        if (v("notes")) lines.push("توضیحات: " + v("notes"));
+        const text = lines.join("\n");
+
+        document.getElementById("orderCode").textContent = code;
+        const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        const row = (a, b, total) => '<div class="row' + (total ? " row--total" : "") + '"><dt>' + a + "</dt><dd>" + b + "</dd></div>";
+        document.getElementById("summary").innerHTML =
+          items.map((i) => row(esc(i.name) + " <small>× " + toFa(i.qty) + "</small>", toman(i.line))).join("") +
+          row("ارسال به <small>" + esc(v("name")) + " · " + toFa(mobile) + " · " + esc(v("province")) + "، " + esc(v("city")) + "، " + esc(v("address")) + " · کد پستی " + toFa(postal) + "</small>", t.ship ? toman(t.ship) : "رایگان") +
+          row("روش پرداخت", esc(pay)) +
+          (v("notes") ? row("توضیحات <small>" + esc(v("notes")) + "</small>", "") : "") +
+          row("مبلغ نهایی", toman(t.total), true);
+        const enc = encodeURIComponent(text);
+        const tg = document.getElementById("tgBtn");
+        tg.href = "https://t.me/" + TELEGRAM_ID + "?text=" + enc;
+        tg.onclick = () => { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {}); };
+        document.getElementById("waBtn").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + enc;
+
+        form.hidden = true;
+        const box = document.getElementById("confirm");
+        box.hidden = false;
+        box.focus({ preventScroll: true });
+        document.getElementById("order").scrollIntoView({ behavior: "smooth", block: "start" });
+        for (const id in cart) delete cart[id];
+        renderCart();
+      });
+    </script>
+  </body>
+</html>
