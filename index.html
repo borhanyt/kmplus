@@ -591,7 +591,7 @@
         </section>
       </main>
       <footer class="foot">
-        <p>© ۱۴۰۵ <span class="x-brand" dir="ltr">KM PLUS</span> — همه حقوق محفوظ است. صداها شبیه‌سازی‌شده‌ی دیجیتال هر نوع سوئیچه.</p>
+        <p>© ۱۴۰۵ <span class="x-brand" dir="ltr">KM PLUS</span> — همه حقوق محفوظ است. صداها ضبط واقعی هر نوع سوئیچ و کلیک موس هستن (منبع: kbsim با مجوز MIT و ویکی‌مدیا CC0).</p>
         <nav aria-label="بازگشت به بخش‌ها" data-auto></nav>
         <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"><span class="hark-mark"></span><span>built by hark</span></a>
       </footer>
@@ -691,7 +691,7 @@
         o.start(t);
         o.stop(t + dur + 0.03);
       }
-      function press(profile, deep) {
+      function synthPress(profile, deep) {
         if (!audio()) return;
         const t = ctx.currentTime + 0.005;
         const v = rnd(0.85, 1.15);
@@ -728,7 +728,7 @@
           noise(b + 0.06 * dm, rnd(0.008, 0.011), "highpass", rnd(3200, 4400), 0.9, 0.55 * v * c);
         }
       }
-      function mouseClick(delay) {
+      function synthMouse(delay) {
         if (!audio()) return;
         const t = ctx.currentTime + 0.005 + (delay || 0);
         const v = rnd(0.9, 1.1);
@@ -736,6 +736,44 @@
         tone(t, rnd(2400, 2600), 0.012, 0.12 * v, "sine");
         noise(t + 0.07, 0.012, "bandpass", rnd(2700, 2900), 2, 0.35 * v);
       }
+
+      // ---------- Real recordings (keyboards: tplai/kbsim, MIT; mouse: Wikimedia Commons, CC0) ----------
+      const SND = {}; let sndLoading = false;
+      const SND_FILES = [];
+      ["linear","tactile","clicky","quiet","poppy"].forEach((p) => ["0","1","2","deep","up"].forEach((k) => SND_FILES.push(p + "_" + k)));
+      SND_FILES.push("mouse");
+      function loadSamples() {
+        if (sndLoading || !ctx) return; sndLoading = true;
+        SND_FILES.forEach((n) => {
+          fetch("snd_" + n + ".mp3").then((r) => r.arrayBuffer())
+            .then((b) => new Promise((ok, no) => ctx.decodeAudioData(b, ok, no)))
+            .then((buf) => { SND[n] = buf; }).catch(() => {});
+        });
+      }
+      function play(buf, when, gain, rate) {
+        const src = ctx.createBufferSource();
+        src.buffer = buf; src.playbackRate.value = rate || 1;
+        const g = ctx.createGain(); g.gain.value = gain;
+        src.connect(g).connect(master); src.start(when);
+      }
+      function press(profile, deep) {
+        if (!audio()) return;
+        loadSamples();
+        const down = deep ? SND[profile + "_deep"] : SND[profile + "_" + Math.floor(Math.random() * 3)];
+        if (!down) return synthPress(profile, deep);
+        const t = ctx.currentTime + 0.003;
+        play(down, t, 1.4, rnd(0.97, 1.03));
+        const up = SND[profile + "_up"];
+        if (up) play(up, t + (deep ? 0.12 : 0.08), 0.9, rnd(0.97, 1.03));
+      }
+      function mouseClick(delay) {
+        if (!audio()) return;
+        loadSamples();
+        if (!SND.mouse) return synthMouse(delay);
+        play(SND.mouse, ctx.currentTime + 0.003 + (delay || 0), 1.2, rnd(0.97, 1.03));
+      }
+
+      document.addEventListener("pointerdown", () => { if (audio()) loadSamples(); }, { once: true, capture: true });
 
       // ---------- Sound lab ----------
       let profile = "linear";
