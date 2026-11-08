@@ -281,6 +281,14 @@
         .x-keycap::after { border-radius: 13px; }
         .head h2 { font-size: 22px; line-height: 1.4; }
       }
+
+      .x-search{position:sticky;top:64px;z-index:20;max-width:720px;margin:12px auto 0;padding:0 16px;}
+      .x-search input{width:100%;box-sizing:border-box;padding:14px 46px 14px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(20,20,22,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;font:inherit;font-size:16px;outline:none;}
+      .x-search input:focus{border-color:#c8de84;box-shadow:0 0 0 3px rgba(200,222,132,.25);}
+      .x-search input::placeholder{color:rgba(255,255,255,.6);}
+      .x-search__icon{position:absolute;right:32px;top:13px;font-size:18px;pointer-events:none;}
+      .x-search__note{margin:6px 8px 0;font-size:13px;color:#c8de84;min-height:0;}
+      .x-search__note:empty{display:none;}
     </style>
   </head>
   <body>
@@ -313,10 +321,15 @@
           </aside>
         </section>
 
+        <div class="x-search" role="search">
+          <span class="x-search__icon" aria-hidden="true">🔍</span>
+          <input id="q" type="search" placeholder="جستجو: مثلاً ردراگون، گلوریس، بی‌سیم…" aria-label="جستجوی محصول" autocomplete="off" />
+          <p class="x-search__note" id="qNote" aria-live="polite"></p>
+        </div>
         <section class="section" id="keyboards" data-nav="کیبوردها">
           <div class="head">
             <p class="head__eyebrow">کیبوردها</p>
-            <h2>شش کیبورد، برای هر سلیقه.</h2>
+            <h2>۱۹ کیبورد، برای هر سلیقه.</h2>
             <p class="head__sub" id="filterNote" aria-live="polite">نمایش همه‌ی کیبوردها</p>
           </div>
           <div class="photo-cards">
@@ -422,6 +435,188 @@
                 </div>
               </div>
             </article>
+          <article class="photo-card" id="dk-17247901" data-profile="tactile" data-cats="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · تکتایل</p>
+                <div class="photo-card__photos"><img src="dk_17247901.jpg" alt="کیبورد گیمینگ اونیکوما مدل G55 RGB" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="tactile" aria-label="پخش صدای سوئیچ تکتایل"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ اونیکوما مدل G55 RGB</h3><p class="photo-card__price">۶٬۲۰۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ مکانیکال قهوه‌ای · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-17247901">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-6951459" data-profile="linear" data-cats="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · لینیر</p>
+                <div class="photo-card__photos"><img src="dk_6951459.jpg" alt="کیبورد گیمینگ ردراگون مدل K617 FIZZ" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="linear" aria-label="پخش صدای سوئیچ لینیر"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ ردراگون مدل K617 FIZZ</h3><p class="photo-card__price">۱۰٬۹۵۶٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ مکانیکال قرمز · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-6951459">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-11098940" data-profile="linear" data-cats="gaming typing">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · ⌨️ تایپ · لینیر</p>
+                <div class="photo-card__photos"><img src="dk_11098940.jpg" alt="کیبورد گیمینگ ردراگون مدل K552 Kumara" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="linear" aria-label="پخش صدای سوئیچ لینیر"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ ردراگون مدل K552 Kumara</h3><p class="photo-card__price">۹٬۲۵۷٬۶۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ مکانیکال قرمز · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-11098940">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-15915303" data-profile="quiet" data-cats="gaming office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · 💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_15915303.jpg" alt="کیبورد گیمینگ بیاند مدل BGK-2010 سوئیچ ممبران" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ بیاند مدل BGK-2010 سوئیچ ممبران</h3><p class="photo-card__price">۲٬۴۰۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ ممبران · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-15915303">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-19977410" data-profile="quiet" data-cats="office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_19977410.jpg" alt="کیبورد بی سیم تسکو مدل TK 7007W" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد بی سیم تسکو مدل TK 7007W</h3><p class="photo-card__price">۲٬۸۶۶٬۶۰۰ تومان</p></div>
+                <p class="photo-card__meta">بی‌سیم · ممبران · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-19977410">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-442287" data-profile="quiet" data-cats="office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_442287.jpg" alt="مینی کیبورد بی سیم مدل i8 Backlit" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>مینی کیبورد بی سیم مدل i8 Backlit</h3><p class="photo-card__price">۸۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">مینی بی‌سیم با تاچ‌پد · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-442287">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-13141805" data-profile="poppy" data-cats="cute">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎀 کیوت · پاپی</p>
+                <div class="photo-card__photos"><img src="dk_13141805.jpg" alt="کیبورد و ماوس بی سیم مافی مدل I bean" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="poppy" aria-label="پخش صدای سوئیچ پاپی"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد و ماوس بی سیم مافی مدل I bean</h3><p class="photo-card__price">۳٬۴۰۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">بی‌سیم · کلید گرد · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-13141805">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-6500814" data-profile="poppy" data-cats="cute">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎀 کیوت · پاپی</p>
+                <div class="photo-card__photos"><img src="dk_6500814.jpg" alt="کیبورد و ماوس بی سیم مافی مدل Sweet S" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="poppy" aria-label="پخش صدای سوئیچ پاپی"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد و ماوس بی سیم مافی مدل Sweet S</h3><p class="photo-card__price">۳٬۹۰۴٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">بی‌سیم · کلید گرد · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-6500814">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-10791132" data-profile="quiet" data-cats="gaming office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · 💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_10791132.jpg" alt="کیبورد گیمینگ هیسکا مدل HX-KEG400 RGB" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ هیسکا مدل HX-KEG400 RGB</h3><p class="photo-card__price">۴٬۰۹۹٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ ممبران · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-10791132">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-2542095" data-profile="clicky" data-cats="gaming typing">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · ⌨️ تایپ · کلیکی</p>
+                <div class="photo-card__photos"><img src="dk_2542095.jpg" alt="کیبورد گیمینگ ردراگون مدل K552 RGB" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="clicky" aria-label="پخش صدای سوئیچ کلیکی"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ ردراگون مدل K552 RGB</h3><p class="photo-card__price">۹٬۴۲۵٬۱۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ مکانیکال آبی · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-2542095">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-22594335" data-profile="linear" data-cats="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیم · لینیر</p>
+                <div class="photo-card__photos"><img src="dk_22594335.jpg" alt="کیبورد گیمینگ اونیکوما مدل G52 New" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="linear" aria-label="پخش صدای سوئیچ لینیر"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گیمینگ اونیکوما مدل G52 New</h3><p class="photo-card__price">۸٬۰۰۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">گیمینگ · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-22594335">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-34183" data-profile="quiet" data-cats="office">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_34183.jpg" alt="کیبورد گرین مدل GK-302" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد گرین مدل GK-302</h3><p class="photo-card__price">۱٬۵۳۹٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">سوئیچ ممبران · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-34183">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
+            <article class="photo-card" id="dk-20267470" data-profile="quiet" data-cats="office typing">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">💼 اداری · ⌨️ تایپ · بی‌صدا</p>
+                <div class="photo-card__photos"><img src="dk_20267470.jpg" alt="کیبورد تسکو مدل TK 8085GA" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-listen="quiet" aria-label="پخش صدای سوئیچ بی‌صدا"><span class="x-keycap__icon" aria-hidden="true">🔊</span><span class="x-keycap__txt">صدا رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>کیبورد تسکو مدل TK 8085GA</h3><p class="photo-card__price">۲٬۹۵۰٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">ممبران · پرفروش دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-20267470">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -450,7 +645,7 @@
         <section class="section" id="mice" data-nav="موس‌ها">
           <div class="head">
             <p class="head__eyebrow">موس‌ها</p>
-            <h2>۲۴ موس، از اداری تا گیمینگ.</h2>
+            <h2>۲۵ موس، از اداری تا گیمینگ.</h2>
             <div class="x-pcats" role="group" aria-label="دسته‌بندی موس">
               <button class="x-mcat x-pcat" type="button" data-mc="all" aria-pressed="true">همه</button>
               <button class="x-mcat x-pcat" type="button" data-mc="gaming" aria-pressed="false">🎮 گیمینگ</button>
@@ -459,10 +654,24 @@
             </div>
           </div>
           <div class="photo-cards">
+            <article class="photo-card" id="dk-19900456" data-mcat="gaming">
+              <div class="photo-card__stage">
+                <p class="photo-card__rank">🎮 گیمینگ · سبک</p>
+                <div class="photo-card__photos"><img src="dk_19900456.jpg" alt="ماوس گلوریس Model O" loading="lazy" /></div>
+                <button class="x-keycap" type="button" data-mouse="m_gaming" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+              </div>
+              <div class="photo-card__body">
+                <div class="photo-card__head"><h3>ماوس گلوریس Model O</h3><p class="photo-card__price">۲۳٬۸۱۲٬۰۰۰ تومان</p></div>
+                <p class="photo-card__meta">بدنه‌ی لانه‌زنبوری سبک · دیجی‌کالا</p>
+                <div class="x-actions">
+                  <button class="x-cta" type="button" data-add="dk-19900456">افزودن به سبد</button>
+                </div>
+              </div>
+            </article>
             <article class="photo-card" id="m-black" data-mcat="gaming wireless">
               <div class="photo-card__stage">
                 <div class="photo-card__photos"><img src="mouse_black.jpg" alt="موس گیمینگ بی‌سیم مشکی" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_gaming" aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>موس گیمینگ بی‌سیم مشکی</h3><p class="photo-card__price">۱٬۹۵۰٬۰۰۰ تومان</p></div>
@@ -475,7 +684,7 @@
             <article class="photo-card" id="m-white" data-mcat="office">
               <div class="photo-card__stage">
                 <div class="photo-card__photos"><img src="mouse_white.jpg" alt="موس ارگونومیک سفید" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_office" aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>موس ارگونومیک سفید</h3><p class="photo-card__price">۱٬۴۵۰٬۰۰۰ تومان</p></div>
@@ -488,7 +697,7 @@
             <article class="photo-card" id="m-a60" data-mcat="gaming">
               <div class="photo-card__stage">
                 <div class="photo-card__photos"><img src="mouse_a60.jpg" alt="موس گیمینگ بلادی A60" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_gaming" aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>موس گیمینگ بلادی A60</h3><p class="photo-card__price">۲٬۶۸۰٬۰۰۰ تومان</p></div>
@@ -501,7 +710,7 @@
             <article class="photo-card" id="m-a90" data-mcat="gaming">
               <div class="photo-card__stage">
                 <div class="photo-card__photos"><img src="mouse_a90.jpg" alt="موس گیمینگ بلادی A90" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_gaming" aria-label="پخش صدای کلیک این موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>موس گیمینگ بلادی A90</h3><p class="photo-card__price">۲٬۸۵۰٬۰۰۰ تومان</p></div>
@@ -515,7 +724,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">📶 بی‌سیم · 🔇 بی‌صدا</p>
                 <div class="photo-card__photos"><img src="dk_16601346.jpg" alt="ماوس بی سیم مدل Silent RGB" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_silent" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم مدل Silent RGB</h3><p class="photo-card__price">۱٬۲۰۰٬۰۰۰ تومان</p></div>
@@ -529,7 +738,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ · 📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_20770928.jpg" alt="ماوس بی سیم مخصوص بازی مدل Optical Sensor" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم مخصوص بازی مدل Optical Sensor</h3><p class="photo-card__price">۱٬۶۶۹٬۰۰۰ تومان</p></div>
@@ -543,7 +752,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_4580723.jpg" alt="ماوس گیمینگ اونیکوما مدل CW905" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس گیمینگ اونیکوما مدل CW905</h3><p class="photo-card__price">۲٬۵۰۰٬۰۰۰ تومان</p></div>
@@ -557,7 +766,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_6551967.jpg" alt="ماوس بی سیم مدل Slim RGB" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="mouse" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم مدل Slim RGB</h3><p class="photo-card__price">۱٬۲۰۰٬۰۰۰ تومان</p></div>
@@ -571,7 +780,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_19644019.jpg" alt="ماوس بی سیم تسکو مدل TM 674W" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="mouse" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم تسکو مدل TM 674W</h3><p class="photo-card__price">۱٬۲۳۳٬۱۰۰ تومان</p></div>
@@ -585,7 +794,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_11501382.jpg" alt="ماوس گیمینگ هیسکا مدل HX-MOG310" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس گیمینگ هیسکا مدل HX-MOG310</h3><p class="photo-card__price">۲٬۸۹۹٬۰۰۰ تومان</p></div>
@@ -599,7 +808,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_7388892.jpg" alt="ماوس مخصوص بازی تسکو مدل TM 763" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی تسکو مدل TM 763</h3><p class="photo-card__price">۱٬۲۹۹٬۰۰۰ تومان</p></div>
@@ -613,7 +822,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">💼 اداری</p>
                 <div class="photo-card__photos"><img src="dk_16600702.jpg" alt="ماوس تسکو مدل TM 210" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_office" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس تسکو مدل TM 210</h3><p class="photo-card__price">۹۸۰٬۰۰۰ تومان</p></div>
@@ -627,7 +836,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_201161.jpg" alt="ماوس مخصوص بازی لاجیتک مدل G502 Hero" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی لاجیتک مدل G502 Hero</h3><p class="photo-card__price">۱۱٬۰۰۰٬۰۰۰ تومان</p></div>
@@ -641,7 +850,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">💼 اداری</p>
                 <div class="photo-card__photos"><img src="dk_6682007.jpg" alt="ماوس پی نت مدل Z.1" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_office" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس پی نت مدل Z.1</h3><p class="photo-card__price">۳۹۰٬۰۰۰ تومان</p></div>
@@ -655,7 +864,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_15279291.jpg" alt="ماوس مخصوص بازی لایماید مدل S1-RGB کد 2024" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی لایماید مدل S1-RGB کد 2024</h3><p class="photo-card__price">۶۴۶٬۰۰۰ تومان</p></div>
@@ -669,7 +878,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_14002248.jpg" alt="ماوس مخصوص بازی یوسیتک مدل GM308" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی یوسیتک مدل GM308</h3><p class="photo-card__price">۴۳۹٬۰۰۰ تومان</p></div>
@@ -683,7 +892,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_17000053.jpg" alt="ماوس بی سیم لکو مدل ws215dm" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="mouse" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم لکو مدل ws215dm</h3><p class="photo-card__price">۱٬۶۸۹٬۰۰۰ تومان</p></div>
@@ -697,7 +906,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_2391709.jpg" alt="ماوس مخصوص بازی لاجیتک مدل G102" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی لاجیتک مدل G102</h3><p class="photo-card__price">۵٬۵۵۰٬۰۰۰ تومان</p></div>
@@ -711,7 +920,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ · 📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_17677712.jpg" alt="ماوس بی سیم مخصوص بازی اونیکوما مدل CW917 DUAL MODE" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم مخصوص بازی اونیکوما مدل CW917 DUAL MODE</h3><p class="photo-card__price">۳٬۴۵۰٬۰۰۰ تومان</p></div>
@@ -725,7 +934,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ · 📶 بی‌سیم</p>
                 <div class="photo-card__photos"><img src="dk_22594183.jpg" alt="ماوس بی سیم گیمینگ اونیکوما مدل DM02" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس بی سیم گیمینگ اونیکوما مدل DM02</h3><p class="photo-card__price">۵٬۹۸۰٬۰۰۰ تومان</p></div>
@@ -739,7 +948,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">💼 اداری</p>
                 <div class="photo-card__photos"><img src="dk_5184307.jpg" alt="ماوس لنوو مدل M20" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_office" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس لنوو مدل M20</h3><p class="photo-card__price">۳۹۸٬۰۰۰ تومان</p></div>
@@ -753,7 +962,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_21083983.jpg" alt="ماوس مخصوص بازی مدل M9" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی مدل M9</h3><p class="photo-card__price">۸۹۹٬۰۰۰ تومان</p></div>
@@ -767,7 +976,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">🎮 گیمینگ</p>
                 <div class="photo-card__photos"><img src="dk_11490965.jpg" alt="ماوس مخصوص بازی تسکو مدل GM 2030" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_razer" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>ماوس مخصوص بازی تسکو مدل GM 2030</h3><p class="photo-card__price">۳٬۲۲۴٬۱۰۰ تومان</p></div>
@@ -781,7 +990,7 @@
               <div class="photo-card__stage">
                 <p class="photo-card__rank">💼 اداری</p>
                 <div class="photo-card__photos"><img src="dk_16959533.jpg" alt="موس لایماید مدل SMART" loading="lazy" /></div>
-                <button class="x-keycap" type="button" data-mouse aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
+                <button class="x-keycap" type="button" data-mouse="m_office" aria-label="پخش صدای کلیک موس"><span class="x-keycap__icon" aria-hidden="true">🖱️</span><span class="x-keycap__txt">کلیک رو بشنو</span></button>
               </div>
               <div class="photo-card__body">
                 <div class="photo-card__head"><h3>موس لایماید مدل SMART</h3><p class="photo-card__price">۶۵۰٬۰۰۰ تومان</p></div>
@@ -930,7 +1139,7 @@
         </section>
       </main>
       <footer class="foot">
-        <p>© ۱۴۰۵ <span class="x-brand" dir="ltr">KM PLUS</span> — همه حقوق محفوظ است. صداها ضبط واقعی هر نوع سوئیچ و کلیک موس هستن (منبع: kbsim با مجوز MIT و ویکی‌مدیا CC0).</p>
+        <p>© ۱۴۰۵ <span class="x-brand" dir="ltr">KM PLUS</span> — همه حقوق محفوظ است. صداها ضبط واقعی هر نوع سوئیچ و کلیک موس هستن (منبع: kbsim با مجوز MIT، ویکی‌مدیا و Freesound با CC0).</p>
         <nav aria-label="بازگشت به بخش‌ها" data-auto></nav>
         <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"><span class="hark-mark"></span><span>built by hark</span></a>
       </footer>
@@ -977,6 +1186,20 @@
         "dk-21083983": { name: "ماوس مخصوص بازی مدل M9", price: 899000 },
         "dk-11490965": { name: "ماوس مخصوص بازی تسکو مدل GM 2030", price: 3224100 },
         "dk-16959533": { name: "موس لایماید مدل SMART", price: 650000 },
+        "dk-17247901": { name: "کیبورد گیمینگ اونیکوما مدل G55 RGB", price: 6200000 },
+        "dk-6951459": { name: "کیبورد گیمینگ ردراگون مدل K617 FIZZ", price: 10956000 },
+        "dk-11098940": { name: "کیبورد گیمینگ ردراگون مدل K552 Kumara", price: 9257600 },
+        "dk-15915303": { name: "کیبورد گیمینگ بیاند مدل BGK-2010 سوئیچ ممبران", price: 2400000 },
+        "dk-19977410": { name: "کیبورد بی سیم تسکو مدل TK 7007W", price: 2866600 },
+        "dk-442287": { name: "مینی کیبورد بی سیم مدل i8 Backlit", price: 850000 },
+        "dk-13141805": { name: "کیبورد و ماوس بی سیم مافی مدل I bean", price: 3400000 },
+        "dk-6500814": { name: "کیبورد و ماوس بی سیم مافی مدل Sweet S", price: 3904000 },
+        "dk-10791132": { name: "کیبورد گیمینگ هیسکا مدل HX-KEG400 RGB", price: 4099000 },
+        "dk-2542095": { name: "کیبورد گیمینگ ردراگون مدل K552 RGB", price: 9425100 },
+        "dk-22594335": { name: "کیبورد گیمینگ اونیکوما مدل G52 New", price: 8000000 },
+        "dk-34183": { name: "کیبورد گرین مدل GK-302", price: 1539000 },
+        "dk-20267470": { name: "کیبورد تسکو مدل TK 8085GA", price: 2950000 },
+        "dk-19900456": { name: "ماوس گلوریس Model O", price: 23812000 },
         "p-p003": { name: "موس‌پد ردراگون P003", price: 1390000 },
         "p-bp50l": { name: "موس‌پد بلادی BP-50L", price: 1050000 },
         "p-grey": { name: "دسک‌مت لاجیتک طوسی", price: 6870000 },
@@ -1096,11 +1319,11 @@
         noise(t + 0.07, 0.012, "bandpass", rnd(2700, 2900), 2, 0.35 * v);
       }
 
-      // ---------- Real recordings (keyboards: tplai/kbsim, MIT; mouse: Wikimedia Commons, CC0) ----------
+      // ---------- Real recordings (keyboards: tplai/kbsim, MIT; mice: Wikimedia Commons + Freesound, CC0) ----------
       const SND = {}; let sndLoading = false;
       const SND_FILES = [];
       ["linear","tactile","clicky","quiet","poppy"].forEach((p) => ["0","1","2","deep","up"].forEach((k) => SND_FILES.push(p + "_" + k)));
-      SND_FILES.push("mouse");
+      SND_FILES.push("mouse","m_silent","m_razer","m_gaming","m_office");
       function loadSamples() {
         if (sndLoading || !ctx) return; sndLoading = true;
         SND_FILES.forEach((n) => {
@@ -1125,11 +1348,12 @@
         const up = SND[profile + "_up"];
         if (up) play(up, t + (deep ? 0.12 : 0.08), 0.9, rnd(0.97, 1.03));
       }
-      function mouseClick(delay) {
+      function mouseClick(delay, kind) {
         if (!audio()) return;
         loadSamples();
-        if (!SND.mouse) return synthMouse(delay);
-        play(SND.mouse, ctx.currentTime + 0.003 + (delay || 0), 1.2, rnd(0.97, 1.03));
+        const buf = SND[kind || "mouse"] || SND.mouse;
+        if (!buf) return synthMouse(delay);
+        play(buf, ctx.currentTime + 0.003 + (delay || 0), 1.2, rnd(0.97, 1.03));
       }
 
       document.addEventListener("pointerdown", () => { if (audio()) loadSamples(); }, { once: true, capture: true });
@@ -1218,7 +1442,7 @@
         b.addEventListener("click", () => { setProfile(b.dataset.listen); burst(b.dataset.listen, 1300, false); b.classList.add("is-on"); clearTimeout(b._k); b._k = setTimeout(() => b.classList.remove("is-on"), 1300); })
       );
       document.querySelectorAll("[data-mouse]").forEach((b) =>
-        b.addEventListener("click", () => { mouseClick(0); mouseClick(0.22); })
+        b.addEventListener("click", () => { const k = b.dataset.mouse || "mouse"; mouseClick(0, k); mouseClick(0.22, k); })
       );
       const vol = document.getElementById("vol"), volOut = document.getElementById("volOut");
       vol.addEventListener("input", () => {
@@ -1306,6 +1530,28 @@
           mc.forEach((card) => { const cats = (card.dataset.mcat || "gaming office").split(" "); card.hidden = !(c === "all" || cats.includes(c)); });
           mb.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
         }));
+      })();
+
+      (function () {
+        const q = document.getElementById("q"), note = document.getElementById("qNote");
+        const norm = (t) => (t || "").toLowerCase().replace(/ي/g, "ی").replace(/ك/g, "ک").replace(/[\u200c\s]+/g, " ").trim();
+        const cards = [...document.querySelectorAll(".photo-card")];
+        const toFaN = (n) => String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+        let first = true;
+        q.addEventListener("input", () => {
+          const v = norm(q.value);
+          document.querySelectorAll("[data-cat],[data-mc],[data-pc]").forEach((b) => { const v2 = b.dataset.cat || b.dataset.mc || b.dataset.pc; b.setAttribute("aria-pressed", String(v2 === "all")); });
+          if (!v) { cards.forEach((c) => (c.hidden = false)); note.textContent = ""; first = true; return; }
+          const words = v.split(" ");
+          let n = 0, hit = null;
+          cards.forEach((c) => {
+            const txt = norm(c.textContent + " " + (c.querySelector("img") || {}).alt);
+            const ok = words.every((w) => txt.includes(w));
+            c.hidden = !ok; if (ok) { n++; hit = hit || c; }
+          });
+          note.textContent = n ? toFaN(n) + " محصول پیدا شد" : "محصولی پیدا نشد";
+          if (hit && first) { first = false; hit.closest("section").scrollIntoView({ behavior: "smooth", block: "start" }); }
+        });
       })();
 
       // ---------- Category filter ----------
