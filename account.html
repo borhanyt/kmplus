@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>حساب کاربری | KM PLUS</title>
+<meta name="description" content="ورود و ثبت‌نام در KM PLUS" />
+<meta name="theme-color" content="#0c0d0f" />
+<meta property="og:title" content="حساب کاربری | KM PLUS" />
+<meta property="og:description" content="ورود و ثبت‌نام در KM PLUS" />
+<link rel="preload" href="Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c8de84'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='900' text-anchor='middle' fill='%230c0d0f'%3EKM%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="km.css?v=3" />
+</head>
+<body>
+<a class="sr" href="#main">رفتن به محتوا</a>
+<div class="topbar">🚚 ارسال رایگان برای خرید بالای ۵ میلیون تومان · ضمانت ۱۸ ماهه</div>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <button class="ibtn burger" type="button" data-burger aria-label="منو">☰</button>
+    <a class="logo" href="index.html" aria-label="KM PLUS خانه"><span class="logo__mark">KM</span><span class="logo__txt"><b class="brand-en">KM PLUS</b><small>کیبورد و موس پلاس</small></span></a>
+    <nav class="nav" aria-label="منوی اصلی"><a href="index.html">خانه</a><a href="keyboards.html">کیبورد</a><a href="mice.html">موس</a><a href="mousepads.html">موس‌پد</a><a href="about.html">درباره ما</a><a href="contact.html">تماس با ما</a></nav>
+    <form class="hsearch" role="search" data-search><span aria-hidden="true">🔍</span><input type="search" placeholder="جستجوی کیبورد، موس، برند…" aria-label="جستجو" /></form>
+    <div class="hicons">
+      <a class="ibtn" href="account.html" data-acc aria-label="حساب کاربری">👤</a>
+      <a class="ibtn" href="cart.html" aria-label="سبد خرید">🛒<span class="badge" data-cart-count></span></a>
+    </div>
+  </div>
+  <div class="wrap msearch"><form role="search" data-search><input type="search" placeholder="🔍 جستجو در KM PLUS…" aria-label="جستجو" /></form></div>
+</header>
+<div class="drawer" id="drawer"><div class="drawer__bg" data-close></div><nav class="drawer__panel" aria-label="منو">
+  <a class="logo" href="index.html" style="padding:0 0 12px"><span class="logo__mark">KM</span><span class="logo__txt"><b class="brand-en">KM PLUS</b><small>کیبورد و موس پلاس</small></span></a>
+  <a href="index.html">خانه</a><a href="keyboards.html">کیبورد</a><a href="mice.html">موس</a><a href="mousepads.html">موس‌پد</a><a href="about.html">درباره ما</a><a href="contact.html">تماس با ما</a><hr /><a href="account.html">👤 حساب کاربری</a><a href="cart.html">🛒 سبد خرید</a><a href="faq.html">❓ سوالات متداول</a><a href="terms.html">📜 قوانین و مقررات</a>
+</nav></div>
+<main id="main">
+<nav class="wrap crumbs" aria-label="مسیر"><a href="index.html">خانه</a> <span>›</span> <span>حساب کاربری</span></nav>
+<div class="wrap" id="account">
+ <div class="auth" id="authBox">
+  <div class="phead" style="text-align:center"><h1>ورود / ثبت‌نام</h1><p>سفارش‌ها و آدرست رو یه‌جا نگه دار.</p></div>
+  <div class="seg" role="tablist"><button type="button" data-seg="login" aria-selected="true">ورود</button><button type="button" data-seg="reg" aria-selected="false">ثبت‌نام</button></div>
+  <form class="form box" id="loginForm">
+    <div class="field"><label for="l-m">شماره موبایل</label><input id="l-m" name="mobile" inputmode="numeric" dir="ltr" autocomplete="username" placeholder="09123456789" required /></div>
+    <div class="field"><label for="l-p">رمز عبور</label><input id="l-p" name="pass" type="password" autocomplete="current-password" required /></div>
+    <p class="err" id="e-login"></p><button class="btn btn--primary btn--block" type="submit">ورود</button>
+  </form>
+  <form class="form box" id="regForm" hidden>
+    <div class="field"><label for="r-n">نام و نام خانوادگی</label><input id="r-n" name="name" autocomplete="name" required /></div>
+    <div class="field"><label for="r-m">شماره موبایل</label><input id="r-m" name="mobile" inputmode="numeric" dir="ltr" autocomplete="username" placeholder="09123456789" required /></div>
+    <div class="field"><label for="r-p">رمز عبور (حداقل ۶ کاراکتر)</label><input id="r-p" name="pass" type="password" autocomplete="new-password" required /></div>
+    <div class="field"><label for="r-p2">تکرار رمز عبور</label><input id="r-p2" name="pass2" type="password" autocomplete="new-password" required /></div>
+    <p class="err" id="e-reg"></p><button class="btn btn--primary btn--block" type="submit">ساخت حساب</button>
+  </form>
+  <p class="count" style="text-align:center;margin-top:10px">اطلاعات حساب روی همین دستگاه ذخیره می‌شه.</p>
+ </div>
+ <div class="acc" id="dash" hidden>
+  <aside>
+    <div class="hello"><span class="avatar" id="hiAv"></span><div><b id="hiName"></b><div class="count brand-en" id="hiMob"></div></div></div>
+    <div class="acc__side" role="tablist">
+      <button type="button" data-tab="orders" aria-selected="true">📦 سفارش‌های من</button>
+      <button type="button" data-tab="addr" aria-selected="false">📍 آدرس</button>
+      <button type="button" data-tab="profile" aria-selected="false">👤 اطلاعات حساب</button>
+      <button type="button" data-tab="recent" aria-selected="false">👀 بازدیدهای اخیر</button>
+      <button type="button" id="logout" style="color:var(--danger)">↩ خروج</button>
+    </div>
+  </aside>
+  <div class="box">
+    <div data-pane="orders"><h2>سفارش‌های من</h2><div id="orders"></div></div>
+    <div data-pane="addr" hidden><h2>آدرس ارسال</h2>
+      <form class="form form--2" id="addrForm">
+        <div class="field"><label>استان</label><select name="province"><option value="">انتخاب کنید</option></select></div>
+        <div class="field"><label>شهر</label><input name="city" /></div>
+        <div class="field full"><label>آدرس کامل</label><textarea name="address"></textarea></div>
+        <div class="field"><label>کد پستی</label><input name="postal" inputmode="numeric" dir="ltr" /></div>
+        <div class="full"><button class="btn btn--primary" type="submit">ذخیره آدرس</button></div>
+      </form></div>
+    <div data-pane="profile" hidden><h2>اطلاعات حساب</h2>
+      <form class="form" id="profileForm">
+        <div class="field"><label>نام و نام خانوادگی</label><input name="name" /></div>
+        <div class="field"><label>ایمیل (اختیاری)</label><input name="email" type="email" dir="ltr" /></div>
+        <div><button class="btn btn--primary" type="submit">ذخیره</button></div>
+      </form></div>
+    <div data-pane="recent" hidden><h2>بازدیدهای اخیر</h2><div class="grid" id="recent"></div></div>
+  </div>
+ </div>
+</div>
+</main>
+<footer class="ftr">
+  <div class="news"><div class="wrap news__in">
+    <div><h3>سوالی قبل از خرید داری؟</h3><p>برای انتخاب کیبورد یا موس مناسب، مستقیم ازمون بپرس.</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn--primary" data-tg href="#" target="_blank" rel="noopener">✈️ تلگرام</a><a class="btn" data-wa href="#" target="_blank" rel="noopener">💬 واتساپ</a></div>
+  </div></div>
+  <div class="wrap fcols">
+    <div class="fabout">
+      <a class="logo" href="index.html"><span class="logo__mark">KM</span><span class="logo__txt"><b class="brand-en">KM PLUS</b><small>کیبورد و موس پلاس</small></span></a>
+      <p>فروشگاه تخصصی کیبورد، موس و موس‌پد. قبل از خرید، صدای سوئیچ‌ها رو بشنو و با خیال راحت انتخاب کن.</p>
+      <div class="social"><a data-tg href="#" target="_blank" rel="noopener" aria-label="تلگرام">✈️</a><a data-wa href="#" target="_blank" rel="noopener" aria-label="واتساپ">💬</a></div>
+    </div>
+    <div><h4>فروشگاه</h4><ul><li><a href="keyboards.html">کیبورد</a></li><li><a href="mice.html">موس</a></li><li><a href="mousepads.html">موس‌پد</a></li><li><a href="index.html#lab">آزمایشگاه صدا</a></li></ul></div>
+    <div><h4>راهنمای خرید</h4><ul><li><a href="faq.html">سوالات متداول</a></li><li><a href="terms.html#ship">شرایط ارسال</a></li><li><a href="terms.html#return">بازگشت کالا</a></li><li><a href="terms.html#warranty">ضمانت</a></li></ul></div>
+    <div><h4><span class="brand-en">KM PLUS</span></h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس با ما</a></li><li><a href="terms.html">قوانین و مقررات</a></li><li><a href="account.html">حساب کاربری</a></li></ul></div>
+  </div>
+  <div class="wrap fbottom"><span>© <span data-year>۱۴۰۵</span> <span class="brand-en">KM PLUS</span> — همه حقوق محفوظ است.</span><span>صداها: ضبط واقعی هر نوع سوئیچ (kbsim، MIT) و کلیک موس (Freesound/Wikimedia، CC0)</span></div>
+</footer>
+<script>window.KM_BASE="";</script>
+<script src="km-products.js?v=3"></script>
+<script src="km.js?v=3"></script>
+</body>
+</html>
