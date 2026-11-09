@@ -116,7 +116,7 @@
   window.KM.sound = { keyPress, typeDemo, clickDemo, playFor };
 
   // ===== Product card =====
-  const CATN = { kb: "کیبورد", mouse: "موس", pad: "موس‌پد" };
+  const CATN = { kb: "کیبورد", mouse: "موس", pad: "موس‌پد", pc: "سیستم کامپیوتر کیس", mon: "مانیتور" };
   function cardHTML(p) {
     const u = B + "p-" + p.id + ".html";
     const snd = p.listen || p.mouse ? '<button class="pc__snd" type="button" data-play="' + p.id + '" aria-label="شنیدن صدا">' + (p.listen ? "🔊" : "🖱️") + "</button>" : "";
@@ -147,7 +147,7 @@
 
   // ===== Search helper =====
   const norm = (s) => toEn(String(s).toLowerCase()).replace(/ي/g, "ی").replace(/ك/g, "ک").replace(/\u200c/g, " ").replace(/\s+/g, " ");
-  const ALIAS = { "ردراگون": "redragon", "گلوریس": "glorious", "ریزر": "razer", "لاجیتک": "logitech", "بلادی": "bloody", "تسکو": "tsco", "بی سیم": "wireless", "گیمینگ": "gaming" };
+  const ALIAS = { "ردراگون": "redragon", "گلوریس": "glorious", "ریزر": "razer", "لاجیتک": "logitech", "بلادی": "bloody", "تسکو": "tsco", "بی سیم": "wireless", "گیمینگ": "gaming", "سفید": "white", "اپل": "apple", "سامسونگ": "samsung", "ال جی": "lg", "ایسوس": "asus" };
   function match(p, q) {
     const hay = norm([p.name, p.alt, p.meta, p.note, (p.feats || []).join(" "), p.tag, CATN[p.cat], (p.sub || []).join(" ")].join(" "));
     return norm(q).split(" ").filter(Boolean).every((w) => hay.includes(w) || (ALIAS[w] && hay.includes(ALIAS[w])) || Object.keys(ALIAS).some((k) => ALIAS[k] === w && hay.includes(k)));

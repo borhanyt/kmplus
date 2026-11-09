@@ -42,7 +42,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ibtn .badge{position:absolute;top:-5px;left:-5px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;display:grid;place-items:center}
 .ibtn .badge:empty,.ibtn .badge[data-n="0"]{display:none}
 .burger{display:grid}
-@media(min-width:900px){.nav{display:flex}.hsearch{display:block}.burger,.m-search{display:none}}
+@media(min-width:900px){.nav{display:flex}.burger{display:none}}
+@media(min-width:1180px){.hsearch{display:block}}
 .drawer{position:fixed;inset:0;z-index:80;display:none}
 .drawer.open{display:block}
 .drawer__bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}
@@ -52,7 +53,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .drawer__panel hr{border:0;border-top:1px solid var(--line);width:100%;margin:8px 0}
 .msearch{padding:0 0 10px;display:block}
 .msearch input{width:100%;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);padding:0 14px;font-size:var(--fs-sm)}
-@media(min-width:900px){.msearch{display:none}}
+@media(min-width:1180px){.msearch{display:none}}
 
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);font-weight:700;font-size:var(--fs-sm);cursor:pointer;transition:transform .12s,background .2s}
@@ -88,12 +89,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sec__head p{margin:2px 0 0;color:var(--muted);font-size:var(--fs-sm)}
 .sec__head a{font-size:var(--fs-sm);color:var(--accent);font-weight:700;white-space:nowrap}
 
-.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cats{display:grid;grid-auto-flow:column;grid-auto-columns:38%;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+@media(min-width:700px){.cats{grid-auto-flow:row;grid-template-columns:repeat(5,1fr)}}
 .cat{position:relative;border-radius:var(--r);overflow:hidden;background:#fff;aspect-ratio:1/1.1;border:1px solid var(--line)}
 .cat img{width:100%;height:100%;object-fit:cover}
 .cat span{position:absolute;inset:auto 0 0 0;padding:26px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-weight:800;font-size:var(--fs-sm)}
 .cat small{display:block;font-weight:400;font-size:var(--fs-xs);color:#ddd}
-@media(min-width:900px){.cat{aspect-ratio:4/3}}
+
 
 /* ---------- Product grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
